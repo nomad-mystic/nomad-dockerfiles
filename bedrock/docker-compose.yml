@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+    - db_data:/var/lib/mysql
+    restart: always
+    ports:
+    - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: db_wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  website:
+    #    depends_on:
+    #    - db
+    image: bedrock:10_25_2018_2
+    volumes:
+    - /home/keith/wordpress_sites/british_museum/natural-history:/var/www/html
+    ports:
+    - "9000:80"
+    restart: always
+  #    environment:
+  #      WORDPRESS_DB_HOST: db:3306
+  #      WORDPRESS_DB_USER: website_wordpress
+  #      WORDPRESS_DB_PASSWORD: website_wordpress
+  phpmyadmin:
+    #    depends_on:
+    #    - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+    - "3000:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: "3306:3306"
+      MYSQL_ROOT_PASSWORD: db_wordpress
+volumes:
+  db_data:
