@@ -10,9 +10,9 @@ services:
     - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: db_wordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress_passion
+      MYSQL_USER: wordpress_passion
+      MYSQL_PASSWORD: wordpress_passion
   website:
     #    depends_on:
     #    - db
@@ -22,17 +22,19 @@ services:
     ports:
     - "9000:80"
     restart: always
-  #    environment:
-  #      WORDPRESS_DB_HOST: db:3306
+#      environment:
+#        WORDPRESS_DB_HOST: db:3306
   #      WORDPRESS_DB_USER: website_wordpress
   #      WORDPRESS_DB_PASSWORD: website_wordpress
   phpmyadmin:
-    #    depends_on:
-    #    - db
+#    depends_on:
+#    - db
+    links:
+    - db
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-    - "3000:80"
+    - "8080:80"
     environment:
       PMA_HOST: db
       PMA_PORT: "3306:3306"

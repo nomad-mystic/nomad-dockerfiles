@@ -28,7 +28,6 @@ RUN wget -qO- https://deb.nodesource.com/setup_${NODE_VERSION} \
 # Add NPM package stuff
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update \
     && apt-get install -y yarn
 
 # PHP stuff
@@ -41,7 +40,6 @@ RUN apt-get install -y software-properties-common \
     && apt-get install -y php${PHP_VERSION}-mbstring php${PHP_VERSION}-intl php${PHP_VERSION}-mysql \
     && apt-get install -y php${PHP_VERSION}-xml php${PHP_VERSION}-zip \
     && apt-get install -y php-cli php-mbstring \
-    && apt-get update
 
 # Wordpress stuff
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
