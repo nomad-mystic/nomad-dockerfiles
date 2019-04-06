@@ -16,7 +16,7 @@ services:
   website:
     #    depends_on:
     #    - db
-    image: bedrock:10_25_2018_2
+    image: bedrock_not_working:10_25_2018_2
     volumes:
     - /home/keith/wordpress_sites/british_museum/natural-history:/var/www/html
     ports:
